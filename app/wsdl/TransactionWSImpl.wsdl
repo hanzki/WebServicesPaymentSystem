@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://wsdl" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://wsdl" xmlns:intf="http://wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://wsdl" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="sellerId" type="xsd:string"/>
+   <element name="amount" type="xsd:int"/>
+   <element name="mac" type="xsd:string"/>
+   <element name="cardNumber" type="xsd:string"/>
+   <complexType name="TransactionWS_WSTransaction">
+    <sequence>
+     <element name="transactionId" nillable="true" type="xsd:string"/>
+     <element name="sellerId" nillable="true" type="xsd:string"/>
+     <element name="amount" type="xsd:int"/>
+     <element name="mac" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="newTransactionReturn" type="impl:TransactionWS_WSTransaction"/>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="newTransactionRequest">
+
+      <wsdl:part element="impl:sellerId" name="sellerId">
+
+      </wsdl:part>
+
+      <wsdl:part element="impl:amount" name="amount">
+
+      </wsdl:part>
+
+      <wsdl:part element="impl:mac" name="mac">
+
+      </wsdl:part>
+
+      <wsdl:part element="impl:cardNumber" name="cardNumber">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="newTransactionResponse">
+
+      <wsdl:part element="impl:newTransactionReturn" name="newTransactionReturn">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="TransactionWSImpl">
+
+      <wsdl:operation name="newTransaction" parameterOrder="sellerId amount mac cardNumber">
+
+         <wsdl:input message="impl:newTransactionRequest" name="newTransactionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:newTransactionResponse" name="newTransactionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="TransactionWSImplSoapBinding" type="impl:TransactionWSImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="newTransaction">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="newTransactionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="newTransactionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="TransactionWSImplService">
+
+      <wsdl:port binding="impl:TransactionWSImplSoapBinding" name="TransactionWSImpl">
+
+         <wsdlsoap:address location="http://localhost:9000//wsdl/TransactionWSImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
